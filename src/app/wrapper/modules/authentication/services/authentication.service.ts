@@ -26,7 +26,7 @@ export class AuthenticationService {
   }
 
   public isAuthenticated(): boolean {
-    const token = CookieHelper.getCookie('REALESTATE_USER_TOKEN');
+    const token = CookieHelper.getCookie('AUTH_USER_TOKEN');
     if (!token) return false;
     return !this.jwtHelper.isTokenExpired(token);
   }
