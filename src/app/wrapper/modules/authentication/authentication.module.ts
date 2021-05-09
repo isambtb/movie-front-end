@@ -7,11 +7,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
 @NgModule({
   declarations: [
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     CommonModule,
