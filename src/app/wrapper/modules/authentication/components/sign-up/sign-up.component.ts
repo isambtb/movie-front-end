@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { AuthenticationService } from 'src/app/wrapper/modules/authentication/services/authentication.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,10 +11,10 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 export class SignUpComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({});
-  public model: { username: string; email: string, password: string } = { username: '', email: '', password: '' };
+  public model: { username: string; password: string } = { username: '', password: '' };
   public fields: FormlyFieldConfig[] = [];
 
-  constructor() {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -30,15 +31,6 @@ export class SignUpComponent implements OnInit {
           required: true,
         }
       }, {
-        key: 'email',
-        type: 'input',
-        templateOptions: {
-          label: 'Email Address',
-          placeholder: 'Enter email',
-          required: true,
-        },
-      },
-      {
         key: 'password',
         type: 'input',
         templateOptions: {
@@ -51,18 +43,18 @@ export class SignUpComponent implements OnInit {
     ];
   }
 
-  public onSubmit(model: { username: string; email: string; password: string }) {
+  public onSubmit(model: { username: string; password: string }) {
     if (!this.form.valid) {
       return;
     }
 
     console.log(model);
-    // this.registerUser(model.username, model.email, model.password);
+    this.registerUser(model.username, model.password);
   }
 
-  // public registerUser(username: string, email: string, password: string) {
-  //   const body = { username, email, password };
-  //   this.authenticationService.register(body)
-  //     .subscribe((val) => console.log(val));
-  // }
+  public registerUser(username: string, password: string) {
+    const body = { username, password };
+    this.authenticationService.register(body)
+      .subscribe((val) => console.log(val));
+  }
 }

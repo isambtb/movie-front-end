@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AuthenticationService } from './services/authentication.service';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -31,6 +33,11 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     BrowserAnimationsModule,
     MatCardModule,
     SignInComponent,
-  ]
+  ],
+  providers:  [
+    AuthenticationService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+]
 })
 export class AuthenticationModule { }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-// import { AuthenticationService } from 'src/app/wrapper/modules/authentication/services/authentication.service';
-// import { CookieHelper } from 'src/app/wrapper/helpers/cookie.helper';
+import { AuthenticationService } from 'src/app/wrapper/modules/authentication/services/authentication.service';
+import { CookieHelper } from 'src/app/wrapper/helpers/cookie.helper';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +14,7 @@ export class SignInComponent implements OnInit {
   public model: { username: string; password: string } = { username: '', password: '' };
   public fields: FormlyFieldConfig[] = [];
 
-  constructor() {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.initFields();
@@ -51,12 +51,12 @@ export class SignInComponent implements OnInit {
 
     console.log(model);
 
-    // this.loginUser(model.username, model.password);
+    this.loginUser(model.username, model.password);
   }
 
-  // public loginUser(username: string, password: string) {
-  //   const body = { username, password };
-  //   this.authenticationService.login(body)
-  //     .subscribe((user) => CookieHelper.setCookie('REALESTATE_USER_TOKEN', user.accessToken));
-  // }
+  public loginUser(username: string, password: string) {
+    const body = { username, password };
+    this.authenticationService.login(body)
+      .subscribe((user) => CookieHelper.setCookie('AUTH_USER_TOKEN', user.accessToken));
+  }
 }
