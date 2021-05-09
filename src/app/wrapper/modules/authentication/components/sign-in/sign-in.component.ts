@@ -49,8 +49,6 @@ export class SignInComponent implements OnInit {
       return;
     }
 
-    console.log(model);
-
     this.loginUser(model.username, model.password);
   }
 

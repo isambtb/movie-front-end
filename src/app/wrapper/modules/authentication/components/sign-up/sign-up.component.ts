@@ -48,7 +48,6 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    console.log(model);
     this.registerUser(model.username, model.password);
   }
 
