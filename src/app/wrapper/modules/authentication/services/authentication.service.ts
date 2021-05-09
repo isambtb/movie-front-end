@@ -18,11 +18,11 @@ export class AuthenticationService {
   ) { }
 
   public login(body: {username: string; password: string}): Observable<IUser> {
-    return this.httpClient.post<IUser>(`http://realestate-backend.ibosoft.de:8080/api/auth/signin`, body, {});
+    return this.httpClient.post<IUser>(``, body, {});
   }
 
   public register(body: {username: string; password: string}): Observable<{ message: string }> {
-    return this.httpClient.post<{ message: string }>(`http://realestate-backend.ibosoft.de:8080/api/auth/signup`, body, {});
+    return this.httpClient.post<{ message: string }>(``, body, {});
   }
 
   public isAuthenticated(): boolean {
